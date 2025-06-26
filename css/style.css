@@ -596,7 +596,8 @@ button:hover {
 
 /* ###################### PROJECTS SECTION STARTED ####################### */
 .projects_container {
-    min-height: 100vh;
+    /* Remove min-height: 100vh and replace with padding */
+    padding-bottom: 4rem; /* Add some bottom padding for spacing */
     background-color: var(--second-bg-color);
 }
 
@@ -665,23 +666,32 @@ button:hover {
     flex-wrap: wrap;
     margin-top: 30px;
     justify-content: center;
+    /* Add minimum height to prevent content jumping */
+    min-height: 300px;
+    gap: 1rem; /* Use gap instead of margins for better spacing */
 }
 
 .gallery .p_image {
-    width: calc(100% / 4);
+    /* Fixed dimensions for consistent card size */
+    width: 280px;
+    height: 200px;
     border-radius: 10px;
-    margin: 1rem 1rem;
+    /* Remove margin since we're using gap */
+    flex-shrink: 0; /* Prevent cards from shrinking */
 }
 
 .gallery .p_image span {
     border-radius: 10px;
     display: flex;
     width: 100%;
+    height: 100%; /* Make span fill the container */
     overflow: hidden;
 }
 
 .gallery .p_image img {
     width: 100%;
+    height: 100%; /* Make image fill the container */
+    object-fit: cover; /* Maintain aspect ratio while covering the area */
     vertical-align: middle;
     transition: all 0.3s ease;
 }
@@ -702,25 +712,29 @@ button:hover {
     0% {
         transform: scale(0.5);
     }
-
     100% {
         transform: scale(1);
     }
 }
 
 @media (width <= 1000px) {
-    .projects_container p{
+    .projects_container p {
         width: 80%;
         margin: 0 auto;
     }
+    
+    /* Adjust card size for medium screens */
     .gallery .p_image {
-        width: calc(100% / 3);
+        width: 250px;
+        height: 180px;
     }
 }
 
 @media (max-width: 800px) {
+    /* Adjust card size for smaller screens */
     .gallery .p_image {
-        width: calc(100% / 2);
+        width: 220px;
+        height: 160px;
     }
 }
 
@@ -749,11 +763,18 @@ button:hover {
         margin: 5px;
     }
 
+    /* Stack cards in single column on mobile with consistent size */
     .gallery .p_image {
         width: 100%;
+        max-width: 300px;
+        height: 200px;
+    }
+
+    /* Reduce gallery min-height on mobile */
+    .gallery {
+        min-height: 200px;
     }
 }
-
 /* ###################### REVIEWS SECTION STARTED ####################### */
 .review_container {
     display: flex;
@@ -919,21 +940,42 @@ button:hover {
 }
 
 .form-container {
-    width: 50%;
-    background: linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
-                linear-gradient(45deg, transparent 35%,var(--main-color), #40c9ff) border-box;
-    border: 2px solid transparent;
-    padding: 32px 24px;
-    font-size: 14px;
-    font-family: inherit;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    box-sizing: border-box;
-    border-radius: 16px;
+  width: 50%;
+  padding: 32px 24px;
+  font-size: 14px;
+  font-family: inherit;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: 2px solid transparent;
+
+  background:
+    linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
+    linear-gradient(270deg,
+      #ff6ec4,
+      #7873f5,
+      #40c9ff,
+      #ff6ec4) border-box;
+
+  background-size: 600% 600%;
+  animation: borderAnimation 6s linear infinite;
+}
+
+@keyframes borderAnimation {
+  0% {
+    background-position: 0% 50%;
   }
-  
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
   .form-container button:active {
     scale: 0.95;
   }
