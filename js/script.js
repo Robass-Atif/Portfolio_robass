@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+
+
+
 // ########################### JS FOR STICKY NAVBAR ########################
 
 window.onscroll = function() {myFunction()};
